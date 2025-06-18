@@ -26,6 +26,10 @@ jobs:
          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
          echo "AWS_REGION=${{ secrets.AWS_REGION }}" >> $GITHUB_ENV
 
+      - name: Print AWS envs (for debugging)
+        run: env | grep AWS
+
+
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
