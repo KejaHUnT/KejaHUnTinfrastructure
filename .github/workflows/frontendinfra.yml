@@ -52,10 +52,9 @@ jobs:
 
       - name: Commit and Push Outputs File
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add tf_outputs.txt
-          git commit -m "Save Terraform outputs"
-          git push origin HEAD
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         git config user.name "github-actions"
+         git config user.email "github-actions@github.com"
+         git remote set-url origin https://x-access-token:${{ secrets.MY_PAT }}@github.com/${{ github.repository }}
+         git add tf_outputs.txt
+         git commit -m "Save Terraform outputs" || echo "Nothing to commit"
+         git push origin HEAD
