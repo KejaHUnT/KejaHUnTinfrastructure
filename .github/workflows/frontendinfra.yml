@@ -68,8 +68,12 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git remote remove origin
-          git remote set-url origin https://x-access-token:${{ secrets.MY_PAT }}@github.com/Kalukwo/KejaHUnTinfrastructure.git
+
+          if ! git remote | grep origin; then
+            git remote add origin https://x-access-token:${{ secrets.MY_PAT }}@github.com/Kalukwo/KejaHUnTinfrastructure.git
+          else
+            git remote set-url origin https://x-access-token:${{ secrets.MY_PAT }}@github.com/Kalukwo/KejaHUnTinfrastructure.git
+
           git remote -v
           git add tf_outputs.txt
           git commit -m "Save Terraform outputs" || echo "Nothing to commit"
