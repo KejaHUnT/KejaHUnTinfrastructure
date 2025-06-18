@@ -50,11 +50,18 @@ jobs:
       - name: Save Terraform Outputs to File
         run: terraform output > tf_outputs.txt
 
-      - name: Debug MY_PAT
-        run: echo "Token length: ${#MY_PAT}"
+      - name: Check if MY_PAT is set
+        run: |
+          if [ -z "$MY_PAT" ]; then
+            echo "❌ MY_PAT is empty"
+            exit 1
+          else
+            echo "✅ MY_PAT is set. Length: ${#MY_PAT}"
+          fi
         shell: bash
         env:
           MY_PAT: ${{ secrets.MY_PAT }}
+
 
 
       - name: Commit and Push Outputs File
