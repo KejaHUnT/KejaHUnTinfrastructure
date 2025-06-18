@@ -1,0 +1,2 @@
+instance_id = "i-09ea3d9a9bc35f759"
+instance_public_ip = "44.204.15.88"
