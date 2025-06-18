@@ -10,5 +10,5 @@ output "instance_id" {
 
 output "instance_public_dns" {
   description = "The public DNS of the EC2 instance"
-  value       = aws_instance.this.public_dns
+  value       = module.aws_ec2.instance_public_dns
 }
