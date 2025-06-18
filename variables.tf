@@ -3,16 +3,16 @@ variable "enable_github_module" {
   default = false
 }
 
-variable "github_token" {
-  description = "GitHub personal access token"
-  type        = string
-  sensitive   = true
-}
+#variable "github_token" {
+#  description = "GitHub personal access token"
+#  type        = string
+#  sensitive   = true
+#}
 
-variable "github_owner" {
-  description = "GitHub organization or user"
-  type        = string
-}
+#variable "github_owner" {
+#  description = "GitHub organization or user"
+#  type        = string
+#}
 
 variable "repo_name" {
   description = "Name of the GitHub repository"
