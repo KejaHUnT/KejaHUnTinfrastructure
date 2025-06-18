@@ -45,7 +45,7 @@ jobs:
         run: terraform plan -lock=false -out=tfplan
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve tfplan
+        run: terraform apply -lock=false -auto-approve tfplan
 
       - name: Save Terraform Outputs to File
         run: terraform output > tf_outputs.txt
