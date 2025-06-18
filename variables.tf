@@ -1,7 +1,7 @@
-variable "enable_github_module" {
-  type    = bool
-  default = false
-}
+#variable "enable_github_module" {
+#  type    = bool
+#  default = false
+#}
 
 #variable "github_token" {
 #  description = "GitHub personal access token"
@@ -14,10 +14,10 @@ variable "enable_github_module" {
 #  type        = string
 #}
 
-variable "repo_name" {
-  description = "Name of the GitHub repository"
-  type        = string
-}
+#variable "repo_name" {
+#  description = "Name of the GitHub repository"
+#  type        = string
+#}
 
 variable "aws_region" {
   description = "AWS region to deploy resources in"
