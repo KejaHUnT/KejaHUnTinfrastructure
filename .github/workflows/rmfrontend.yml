@@ -1,5 +1,4 @@
 name: Destroy frontend Infrastructure
-
 on:
   workflow_dispatch: # Manually triggered
 
@@ -7,31 +6,31 @@ jobs:
   destroy:
     name: Destroy Infrastructure
     runs-on: ubuntu-latest
-
     env:
       TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
       TF_VAR_ami_id: ${{ secrets.AMI_ID }}
       TF_VAR_instance_type: ${{ secrets.INSTANCE_TYPE }}
       TF_VAR_key_name: ${{ secrets.KEY_NAME }}
       TF_VAR_security_group_id: ${{ secrets.SECURITY_GROUP_ID }}
-
+    
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-
+        
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.6.6
-
-      - name: Configure AWS Credentials
-        run: |
-          echo "AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY_ID }}" >> $GITHUB_ENV
-          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
-          echo "AWS_DEFAULT_REGION=${{ secrets.AWS_REGION }}" >> $GITHUB_ENV
-
+          
       - name: Terraform Init
         run: terraform init
-
+        
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
