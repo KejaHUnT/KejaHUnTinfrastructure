@@ -3,6 +3,9 @@ name: Terraform Deployment
 on:
   workflow_dispatch  # Manual trigger via GitHub UI
 
+permissions:
+  contents: write  
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
