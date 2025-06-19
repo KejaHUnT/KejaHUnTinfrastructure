@@ -33,4 +33,4 @@ jobs:
         run: terraform init
         
       - name: Terraform Destroy
-        run: terraform destroy -lock=false -auto-approve
+        run: terraform destroy -lock=false -auto-approve -target='module.aws_ec2.aws_instance.frontend'
