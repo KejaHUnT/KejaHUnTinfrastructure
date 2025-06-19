@@ -5,5 +5,4 @@
 crash.log
 *.tfvars
 terraform.tfstate.d/
-tf_outputs.txt
 .github/
