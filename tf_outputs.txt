@@ -1,0 +1,6 @@
+frontend_instance_id = "i-0a085fc67e9c8af81"
+frontend_public_dns = "ec2-3-84-131-14.compute-1.amazonaws.com"
+frontend_public_ip = "3.84.131.14"
+propertyservice_instance_id = "i-00f989767bb5c2dbf"
+propertyservice_public_dns = "ec2-52-207-236-196.compute-1.amazonaws.com"
+propertyservice_public_ip = "52.207.236.196"
