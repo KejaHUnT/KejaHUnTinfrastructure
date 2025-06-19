@@ -48,7 +48,7 @@ jobs:
         run: terraform plan -lock=false -out=tfplan
 
       - name: Terraform Apply
-        run: terraform apply -lock=false -auto-approve tfplan
+        run: terraform apply -lock=false -auto-approve -target='module.aws_ec2.aws_instance.frontend'
 
       - name: Save Terraform Outputs to File
         run: terraform output > tf_outputs.txt
