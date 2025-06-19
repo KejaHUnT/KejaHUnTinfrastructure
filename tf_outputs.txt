@@ -1,3 +1,0 @@
-instance_id = "i-0afb9c8e8290d157b"
-instance_public_dns = "ec2-44-204-50-74.compute-1.amazonaws.com"
-instance_public_ip = "44.204.50.74"
