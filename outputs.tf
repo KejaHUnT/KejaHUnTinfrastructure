@@ -1,14 +1,23 @@
-output "instance_public_ip" {
-  description = "The public IP address of the EC2 instance"
-  value       = module.aws_ec2.instance_public_ip
+output "frontend_public_ip" {
+  value = module.aws_ec2.frontend_public_ip
 }
 
-output "instance_id" {
-  description = "The ID of the EC2 instance"
-  value       = module.aws_ec2.instance_id
+output "frontend_instance_id" {
+  value = module.aws_ec2.frontend_instance_id
 }
 
-output "instance_public_dns" {
-  description = "The public DNS of the EC2 instance"
-  value       = module.aws_ec2.instance_public_dns
+output "frontend_public_dns" {
+  value = module.aws_ec2.frontend_public_dns
+}
+
+output "propertyservice_public_ip" {
+  value = module.aws_ec2.propertyservice_public_ip
+}
+
+output "propertyservice_instance_id" {
+  value = module.aws_ec2.propertyservice_instance_id
+}
+
+output "propertyservice_public_dns" {
+  value = module.aws_ec2.propertyservice_public_dns
 }
