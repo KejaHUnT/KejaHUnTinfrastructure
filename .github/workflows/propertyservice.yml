@@ -1,4 +1,4 @@
-name: Frontend Infrastructure
+name: Propertyservice Infrastructure
 
 on:
   workflow_dispatch  # Manual trigger via GitHub UI
@@ -45,7 +45,7 @@ jobs:
         run: terraform validate
         
       - name: Terraform Apply
-        run: terraform apply -lock=false -auto-approve -target='module.aws_ec2.aws_instance.frontend'
+        run: terraform apply -lock=false -auto-approve -target='module.aws_ec2.aws_instance.propertyservice'
 
       - name: Save Terraform Outputs to File
         run: terraform output > tf_outputs.txt

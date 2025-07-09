@@ -1,4 +1,4 @@
-name: Destroy frontend Infrastructure
+name: Destroy Propertyservice Infrastructure
 on:
   workflow_dispatch: # Manually triggered
 
@@ -33,4 +33,4 @@ jobs:
         run: terraform init
         
       - name: Terraform Destroy
-        run: terraform destroy -lock=false -auto-approve -target='module.aws_ec2.aws_instance.frontend'
+        run: terraform destroy -lock=false -auto-approve -target='module.aws_ec2.aws_instance.propertyservice'
