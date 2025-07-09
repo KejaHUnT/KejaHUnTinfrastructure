@@ -21,3 +21,15 @@ output "propertyservice_instance_id" {
 output "propertyservice_public_dns" {
   value = module.aws_ec2.propertyservice_public_dns
 }
+
+output "gateway_public_ip" {
+  value = module.aws_ec2.gateway_public_ip
+}
+
+output "gateway_instance_id" {
+  value = module.aws_ec2.gateway_instance_id
+}
+
+output "gateway_public_dns" {
+  value = module.aws_ec2.gateway_public_dns
+}

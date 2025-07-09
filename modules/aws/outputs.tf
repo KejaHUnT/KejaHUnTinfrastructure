@@ -27,3 +27,18 @@ output "propertyservice_public_dns" {
   description = "The public DNS of the backend EC2 instance"
   value       = aws_instance.propertyservice.public_dns
 }
+
+output "gateway_public_ip" {
+  description = "The public IP of the gateway EC2 instance"
+  value       = aws_instance.gateway.public_ip
+}
+
+output "gateway_instance_id" {
+  description = "The EC2 instance ID for the gateway"
+  value       = aws_instance.gateway.id
+}
+
+output "gateway_public_dns" {
+  description = "The public DNS of the gateway EC2 instance"
+  value       = aws_instance.gateway.public_dns
+}
