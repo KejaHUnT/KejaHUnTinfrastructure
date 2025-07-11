@@ -1,12 +1,22 @@
 services:
-  app:
+  angular:
     image: kalukwo/kejahunt-angular:latest
     container_name: kejahunt-frontend
     ports:
-      - "80:80"
+      - "8081:80"
     environment:
-      - API_BASE_URL=http://kiptisha:7209
-      - TENANT_API_BASE_URL=https://kiptisha:7159
+      - API_BASE_URL=http://koske:7209
+      - TENANT_API_BASE_URL=https://koske:7159
       - FILE_HANDLER_API_BASE_URL=https://your-file-api:7115
-      - BOOKING_API_BASE_URL=https://kiptisha:7160
+      - BOOKING_API_BASE_URL=https://koske:7160
       - PAYMENT_API_BASE_URL=https://your-payment-api:7299
+
+  gateway:
+    image: kalukwo/kejahunt-gateway:latest
+    container_name: kejahunt-gateway
+    ports:
+      - "5000:8080"
+    environment:
+      - ReverseProxy__Clusters__fileHandlerService__Destinations__files__Address=https://localhost:7115/
+      - ReverseProxy__Clusters__propertyService__Destinations__properties__Address=http://107.23.55.146:5000/
+      - ReverseProxy__Clusters__accessService__Destinations__access__Address=https://localhost:7159/
