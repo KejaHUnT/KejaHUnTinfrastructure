@@ -31,7 +31,7 @@
       become_user: "{{ ansible_user }}"
       
     - name: Start/recreate services with docker-compose up -d
-      shell: docker compose up -d
+      shell: docker compose up -d --remove-orphans
       args:
         chdir: "{{ app_directory }}"
       become_user: "{{ ansible_user }}"
