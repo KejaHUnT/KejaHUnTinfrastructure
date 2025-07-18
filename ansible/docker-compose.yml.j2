@@ -5,11 +5,13 @@ services:
     ports:
       - "80:80"
     environment:
-      - API_BASE_URL=http://koske:7209
-      - TENANT_API_BASE_URL=https://koske:7159
-      - FILE_HANDLER_API_BASE_URL=https://your-file-api:7115
-      - BOOKING_API_BASE_URL=https://koske:7160
-      - PAYMENT_API_BASE_URL=https://your-payment-api:7299
+      - API_BASE_URL=http://gateway:8080
+      - TENANT_API_BASE_URL=http://gateway:8080
+      - FILE_HANDLER_API_BASE_URL=http://gateway:8080
+      - BOOKING_API_BASE_URL=http://gateway:8080
+      - PAYMENT_API_BASE_URL=http://gateway:8080
+    depends_on:
+      - gateway
 
   gateway:
     image: kalukwo/kejahunt-gateway:latest
@@ -17,6 +19,16 @@ services:
     ports:
       - "5000:8080"
     environment:
-      - ReverseProxy__Clusters__fileHandlerService__Destinations__files__Address=https://localhost:7115/
-      - ReverseProxy__Clusters__propertyService__Destinations__properties__Address=http://107.23.55.146:5000/
-      - ReverseProxy__Clusters__accessService__Destinations__access__Address=https://localhost:7159/
+      - ReverseProxy__Clusters__fileHandlerService__Destinations__files__Address=http://filehandler:8080/
+      - ReverseProxy__Clusters__propertyService__Destinations__properties__Address=http://property:8080/
+      - ReverseProxy__Clusters__accessService__Destinations__access__Address=http://access:8080/
+    depends_on:
+      - property
+
+  property:
+    image: kalukwo/kejahunt-propertyservice:latest
+    container_name: kejahunt-property
+    ports:
+      - "6000:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=34.74.244.105;Database=test_property_container;Username=postgres;Password=KejaHUnT@2217;Port=5432;
