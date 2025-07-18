@@ -5,11 +5,12 @@ services:
     ports:
       - "80:80"
     environment:
-      - API_BASE_URL=http://gateway:8080
-      - TENANT_API_BASE_URL=http://gateway:8080
-      - FILE_HANDLER_API_BASE_URL=http://gateway:8080
-      - BOOKING_API_BASE_URL=http://gateway:8080
-      - PAYMENT_API_BASE_URL=http://gateway:8080
+      # Use localhost or your server's IP for browser requests
+      - API_BASE_URL=http://localhost:5000
+      - TENANT_API_BASE_URL=http://localhost:5000
+      - FILE_HANDLER_API_BASE_URL=http://localhost:5000
+      - BOOKING_API_BASE_URL=http://localhost:5000
+      - PAYMENT_API_BASE_URL=http://localhost:5000
     depends_on:
       - gateway
 
