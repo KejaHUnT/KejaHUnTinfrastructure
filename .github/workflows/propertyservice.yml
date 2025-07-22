@@ -1,4 +1,4 @@
-name: Propertyservice Infrastructure
+name: API's shared Infrastructure
 
 on:
   workflow_dispatch  # Manual trigger via GitHub UI

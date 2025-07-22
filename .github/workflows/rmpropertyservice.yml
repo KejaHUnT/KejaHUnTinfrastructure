@@ -1,4 +1,4 @@
-name: Destroy Propertyservice Infrastructure
+name: Destroy API's shared Infrastructure
 on:
   workflow_dispatch: # Manually triggered
 
