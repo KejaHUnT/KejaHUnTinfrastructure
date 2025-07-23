@@ -11,6 +11,7 @@ services:
       - FILE_HANDLER_API_BASE_URL=http://35.207.12.140:5000/files
       - BOOKING_API_BASE_URL=http://localhost:5000
       - PAYMENT_API_BASE_URL=http://localhost:5000
+      - ACCESS_API_BASE_URL=http://35.207.12.140.5000/access
     depends_on:
       - gateway
 
@@ -46,6 +47,16 @@ services:
     depends_on:
      - migrations-filehandler
 
+  access:
+    image: kalukwo/kejahunt-accessapi:latest
+    container_name: kejahunt-access
+    ports:
+      - "8000:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=34.74.244.105;Database=AccessDb;Username=postgres;Password=KejaHUnT@2217;Port=5432;
+    depends_on:
+     - migrations-access    
+
   migrations-property:
     image: kalukwo/kejahunt-propertyservice:migrations
     container_name: kejahunt-property-migrations
@@ -58,5 +69,12 @@ services:
     container_name: kejahunt-filehandler-migrations
     environment:
       - ConnectionStrings__DefaultConnection=Host=34.74.244.105;Database=FileHandlerDb;Username=postgres;Password=KejaHUnT@2217;Port=5432;
-    restart: "no"     
+    restart: "no"
+
+  migrations-access:
+    image: kalukwo/kejahunt-accessapi:migrations
+    container_name: kejahunt-access-migrations
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=34.74.244.105;Database=AccessDb;Username=postgres;Password=KejaHUnT@2217;Port=5432;
+    restart: "no"   
      
