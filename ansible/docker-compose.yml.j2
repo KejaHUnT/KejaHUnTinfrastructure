@@ -6,12 +6,18 @@ services:
       - "80:80"
     environment:
       # Use localhost or your server's IP for browser requests
-      - API_BASE_URL=http://35.207.12.140:5000/properties
-      - TENANT_API_BASE_URL=http://localhost:5000
-      - FILE_HANDLER_API_BASE_URL=http://35.207.12.140:5000/files
-      - BOOKING_API_BASE_URL=http://localhost:5000
-      - PAYMENT_API_BASE_URL=http://localhost:5000
-      - ACCESS_API_BASE_URL=http://35.207.12.140:5000/access
+#      - API_BASE_URL=http://35.207.12.140:5000/properties
+#      - TENANT_API_BASE_URL=http://localhost:5000
+#      - FILE_HANDLER_API_BASE_URL=http://35.207.12.140:5000/files
+#      - BOOKING_API_BASE_URL=http://localhost:5000
+#      - PAYMENT_API_BASE_URL=http://localhost:5000
+#      - ACCESS_API_BASE_URL=http://35.207.12.140:5000/access
+
+      - API_BASE_URL=https://kejahunt.duckdns.org/api/properties
+      - TENANT_API_BASE_URL=https://kejahunt.duckdns.org/api/tenants
+      - FILE_HANDLER_API_BASE_URL=https://kejahunt.duckdns.org/api/files
+      - ACCESS_API_BASE_URL=https://kejahunt.duckdns.org/api/access
+
     depends_on:
       - gateway
 
