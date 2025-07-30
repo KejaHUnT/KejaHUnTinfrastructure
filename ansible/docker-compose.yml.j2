@@ -1,18 +1,20 @@
 services:
+  redis:
+    image: redis:7-alpine
+    container_name: app-redis
+    command: redis-server --maxmemory 512mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+    restart: unless-stopped
+
   angular:
     image: kalukwo/kejahunt-angular:latest
     container_name: kejahunt-frontend
     ports:
       - "80:80"
     environment:
-      # Use localhost or your server's IP for browser requests
-#      - API_BASE_URL=http://35.207.12.140:5000/properties
-#      - TENANT_API_BASE_URL=http://localhost:5000
-#      - FILE_HANDLER_API_BASE_URL=http://35.207.12.140:5000/files
-#      - BOOKING_API_BASE_URL=http://localhost:5000
-#      - PAYMENT_API_BASE_URL=http://localhost:5000
-#      - ACCESS_API_BASE_URL=http://35.207.12.140:5000/access
-
       - API_BASE_URL=https://kejahunt.duckdns.org/properties
       - TENANT_API_BASE_URL=https://kejahunt.duckdns.org/tenants
       - FILE_HANDLER_API_BASE_URL=https://kejahunt.duckdns.org/files
@@ -42,6 +44,7 @@ services:
       - ConnectionStrings__DefaultConnection=Host=34.74.244.105;Database=PropertyDb;Username=postgres;Password=KejaHUnT@2217;Port=5432;
     depends_on:
      - migrations-property
+     - redis
 
   filehandler:
     image: kalukwo/kejahunt-filehandler:latest
@@ -52,6 +55,7 @@ services:
       - ConnectionStrings__DefaultConnection=Host=34.74.244.105;Database=FileHandlerDb;Username=postgres;Password=KejaHUnT@2217;Port=5432;
     depends_on:
      - migrations-filehandler
+     - redis
 
   access:
     image: kalukwo/kejahunt-accessapi:latest
@@ -61,7 +65,8 @@ services:
     environment:
       - ConnectionStrings__DefaultConnection=Host=34.74.244.105;Database=AccessDb;Username=postgres;Password=KejaHUnT@2217;Port=5432;
     depends_on:
-     - migrations-access    
+     - migrations-access
+     - redis  
 
   migrations-property:
     image: kalukwo/kejahunt-propertyservice:migrations
